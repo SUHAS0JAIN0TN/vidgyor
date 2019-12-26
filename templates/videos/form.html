@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>List Of all videos</title>
+</head>
+<body>
+	<div>
+		<form method="POST" action="{% url 'main_page' %}" enctype="multipart/form-data">
+			{% csrf_token %}
+			{{vform.as_table}}
+	       	<input type="submit" name="submit" value="SUBMIT">
+	    </form>
+	</div>
+</body>
+</html>

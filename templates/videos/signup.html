@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login Page</title>
+</head>
+{% load static %}
+<body style="background-image: url({% static 'images/OG1FLx.jpg' %})">
+	<div style="position: fixed;  top: 40%;  left: 50%;transform: translate(-50%, -50%);">
+		<form method="POST" enctype="html/text" action="{% url 'signup' %}" >
+			{% csrf_token %}
+		<!-- {{usfo.as_table}} -->
+
+		<div style="margin-bottom: 10px;">
+	            <div >{{usfo.email.label}}</div>
+	            <div>{{usfo.email}}</div>
+	    </div>
+	    <div style="margin-bottom: 10px;">
+	            <div >{{usfo.name.label}}</div>
+	            <div>{{usfo.name}}</div>
+	    </div>
+	    <div style="margin-bottom: 10px;">
+	            <div >{{usfo.password1.label}}</div>
+	            <div>{{usfo.password1}}</div>
+	    </div>
+	    <div style="margin-bottom: 10px;">
+	            <div >{{usfo.password2.label}}</div>
+	            <div>{{usfo.password2}}</div>
+	    </div>
+	                <!-- <div>{{usfo.password.label}}<br>{{usfo.password}}</div> -->
+
+
+		<input type="submit" name="submit" value="SUBMIT">
+		</form>
+	</div>
+</body>
+</html>
+<!-- var newlatlng= new google.maps.LatLng(latLng.lat()-0.090000000000,latLng.lng()) -->

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login Page</title>
+</head>
+{% load static %}
+<style type="text/css">
+	body{
+		font-family: Arial, Helvetica, sans-serif;
+	}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<body style="background-image: url({% static 'images/OG1FLx.jpg' %})">
+	<!-- <form method="POST" enctype="html/text" action="{% url 'login' %}" >
+		{% csrf_token %}
+		{{usfo.as_table}}
+	<input type="submit" name="submit" value="SUBMIT">
+	</form> -->
+
+	<div style="position: fixed;  top: 30%;  left: 50%;transform: translate(-50%, -50%); ">
+        <form method="POST" enctype="html/text" action="{% url 'login' %}" >
+            {% csrf_token %}
+
+            <!-- {{usfo.as_table}} -->
+            <!-- {{ usfo.non_field_errors }} -->
+            <div style="margin-bottom: 10px;">
+            		<!-- {{ usfo.email.errors }} -->
+                    <div >{{usfo.email.label}}</div>
+                    <div>{{usfo.email}}</div>
+                    <div>{{usfo.email.errors}}</div>
+            </div>
+            
+            <div style="margin-bottom: 5px;">
+                    <div >{{usfo.password.label}}</div>
+                    <div>{{usfo.password}}</div>
+                    <div>{{ usfo.password.errors}}</div>
+            </div>
+            {% if err %}
+            <div style="color:red;" class="error">{{ err }}</div>
+            {% endif %}
+            <!-- {{ usfo.errors }} -->
+            <!-- <div>{{usfo.password.label}}<br>{{usfo.password}}</div> -->
+            <!-- {{for}} -->
+        	<input type="submit" name="submit" value="SUBMIT">
+        </form>
+    </div>
+
+<script type="text/javascript">
+	$('input').on('input',function(){
+		$('.error').hide();
+	});
+</script>
+</body>
+</html>

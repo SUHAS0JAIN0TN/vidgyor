@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>index page</title>
+</head>
+{% load static %}
+<style type="text/css">
+	body{
+		font-family: Arial, Helvetica, sans-serif;
+	}
+</style>
+<body style="background-image: url({% static 'images/OG1FLx.jpg' %})">
+	<div>
+		<!-- <a href="{% url 'login' %}"><div>Login</div></a>
+		<a href="{% url 'signup' %}"><div>Signup</div></a> -->
+		<!-- {{usfo.as_table}}<br> -->
+		<div style="margin-top: 30px; float: right; margin-right: 65px;">
+
+                        <a href="{% url 'login' %}"><div style="display: inline-block;font-size: 25px; margin-right: 10px;color: black;">Login</div></a>
+                        <a href="{% url 'signup' %}"><div style="display: inline-block;font-size: 25px; margin-right: 10px;color: black;">Signup</div></a>
+
+        </div>
+
+		<!-- <img src="{% static 'images/OG1FLx.jpg' %}" style="margin-top: 300px;margin-left: 500px; width: 200px;height: 150px;"> -->
+	</div>
+</body>
+</html>
