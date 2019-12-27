@@ -1,6 +1,7 @@
 from django import forms
 from .models import User,vid
 from django.contrib.auth import authenticate
+from django.core.files.images import get_image_dimensions
 
 class UserForm(forms.ModelForm):
         password1=forms.CharField(label='password',widget=forms.PasswordInput)
@@ -26,7 +27,7 @@ class UserForm(forms.ModelForm):
 
 class UserLoginForm(forms.Form):
         email=forms.EmailField(label='Email')
-        password=forms.CharField(label='password', widget=forms.PasswordInput)
+        password=forms.CharField(label='Password', widget=forms.PasswordInput)
 
         # def clean_email(self):
         #       email = self.cleaned_data.get('email')
@@ -52,7 +53,20 @@ class VideoForm(forms.ModelForm):
                 print(thumb.name.split('.')[-1])
                 if not (thumb.name.split('.')[-1]=='jpg' or thumb.name.split('.')[-1]=='png' or thumb.name.split('.')[-1]=='jpeg'):
                         raise forms.ValidationError("Thumbnail should be in jpg or jpeg or png format")
+                else:
+                        w, h = get_image_dimensions(thumb)
+                        if w != 200:
+                                raise forms.ValidationError("The image is %i pixel wide. It's supposed to be 200px" % w)
+                        if h != 200:
+                                raise forms.ValidationError("The image is %i pixel high. It's supposed to be 200px" % h)
                 return thumb
+        def clean_videos(self):
+                video =self.cleaned_data.get('videos')
+                print(video.name.split('.')[-1])
+                if not (video.name.split('.')[-1]=='mpeg' or video.name.split('.')[-1]=='mp4' or video.name.split('.')[-1]=='mkv'):
+                        raise forms.ValidationError("Video  should be in mp4 or mkv or mpeg format")
+                return video
+
 
 class filter_form(forms.Form):
         name=forms.CharField(required=False)

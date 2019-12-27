@@ -4,6 +4,9 @@
 	<title>Login Page</title>
 </head>
 {% load static %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" ></script>
 <body style="background-image: url({% static 'images/OG1FLx.jpg' %})">
 	<div style="position: fixed;  top: 40%;  left: 50%;transform: translate(-50%, -50%);">
 		<form method="POST" enctype="html/text" action="{% url 'signup' %}" >
@@ -13,18 +16,42 @@
 		<div style="margin-bottom: 10px;">
 	            <div >{{usfo.email.label}}</div>
 	            <div>{{usfo.email}}</div>
+	            <div>
+                    {% for err in usfo.email.errors%}
+                    <span style="color: red;">{{ err }}</span><br>
+                    {% endfor %}
+
+                </div>
 	    </div>
 	    <div style="margin-bottom: 10px;">
 	            <div >{{usfo.name.label}}</div>
 	            <div>{{usfo.name}}</div>
+	            <div>
+                    {% for err in usfo.name.errors%}
+                    <span style="color: red;">{{ err }}</span><br>
+                    {% endfor %}
+
+                </div>
 	    </div>
 	    <div style="margin-bottom: 10px;">
 	            <div >{{usfo.password1.label}}</div>
 	            <div>{{usfo.password1}}</div>
+	            <div>
+                    {% for err in usfo.password1.errors%}
+                    <span style="color: red;">{{ err }}</span><br>
+                    {% endfor %}
+
+                </div>
 	    </div>
 	    <div style="margin-bottom: 10px;">
 	            <div >{{usfo.password2.label}}</div>
 	            <div>{{usfo.password2}}</div>
+	            <div>
+                    {% for err in usfo.password2.errors%}
+                    <span style="color: red;">{{ err }}</span><br>
+                    {% endfor %}
+
+                </div>
 	    </div>
 	                <!-- <div>{{usfo.password.label}}<br>{{usfo.password}}</div> -->
 

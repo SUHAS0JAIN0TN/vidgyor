@@ -25,7 +25,7 @@ SECRET_KEY = '-f)01=@+i_m1nnl3)q@!v+i3loae_hf2nm9078@5hk!0o806()'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1','ec2-13-250-35-254.ap-southeast-1.compute.amazonaws.com','intense-garden-39041.herokuapp.com']
 
 
 # Application definition
@@ -76,8 +76,12 @@ WSGI_APPLICATION = 'vidgyor.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'd85rhqd0n4m3cr',
+        'USER': 'vnxbhxchayrbmq',
+        'HOST': 'ec2-107-22-224-154.compute-1.amazonaws.com',
+        'PORT': '5432',
+        'PASSWORD': 'b541727af19918e72f9200a6c38ec56f887f748041065d1be45e3fa120b8e3fa',
     }
 }
 

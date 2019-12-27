@@ -4,42 +4,51 @@
 	<title>done</title>
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" ></script>
 <body>
-	<div><a href="{% url 'logout' %}">Logout</a><a href="{% url 'add_form' %}">Add Video</a></div>
+	<div style="margin: 0 auto ;width: 1000px;margin-top: 30px; ">
+
+	
+
+	<div style="margin-left: 760px;font-size: 25px; margin-bottom: 20px;"><span style="margin-left: 20px;"><a href="{% url 'add_form' %}">Add Video</a></span><span style="margin-left: 20px;"><a href="{% url 'logout' %}">Logout</a></span></div>
 	<div>
-	<table >
 		<form method="POST" enctype="html/text" action="{{ request.path }}" >
             {% csrf_token %}
-		{{filterForm.as_table}}
+		<span style="margin-left: 4px;">Title:</span>{{filterForm.name}}<span style="margin-left: 4px;">From Date</span>{{filterForm.from_date}}<span style="margin-left: 4px;">To Date</span>{{filterForm.to_date}}
 		<input type="submit" name="submit" value="SUBMIT">
         </form>
-		<tr><th>Title</th><th>Description</th><th>Tags</th><th>Categories</th><th>Thumbnail</th><th>Edit</th><th>Delete</th></tr>
-	
-		{% for d in data %}
-		    <tr id="{{d.id}}"><td style="border: 2px black solid">{{d.title}}</td><td style="border: 2px black solid">{{d.description}}</td><td style="border: 2px black solid">{{d.tags}}</td><td style="border: 2px black solid">{{d.categories}}</td><td style="border: 2px black solid">{{d.thumbnail}}</td><td class="edit" style="border: 2px black solid"><a href="{% url 'edit_form' id=d.id %}">Edit</a></td><td class="delete" style="border: 2px black solid"><a href="{% url 'delete' id=d.id %}" onClick="return confirm('Do you want to delete')">Delete</a></td></tr>
-		{% endfor %}
-	
-	</table>
+			{% if data%}
+			<table style="margin-top:20px;">
+				<tr><th style="text-align: center;">Thumbnail</th><th style="text-align: center;">Title</th><th style="text-align: center;">Description</th><th style="text-align: center;">Tags</th><th style="text-align: center;">Categories</th><th style="text-align: center;">Video Link</th><th style="text-align: center;">Edit</th><th style="text-align: center;">Delete</th></tr>
+			{% for d in data %}
+			    <tr id="{{d.id}}"><td style="border: 2px black solid"><img src="{{ d.thumbnail.url}}"></td><td style="border: 2px black solid">{{d.title}}</td><td style="border: 2px black solid">{{d.description}}</td><td style="border: 2px black solid">{{d.tags}}</td><td style="border: 2px black solid">{{d.categories}}</td><td style="border: 2px black solid"><a href="{{ d.videos.url }}">{{ d.videos.url }}</a></td><td class="edit" style="border: 2px black solid"><a href="{% url 'edit_form' id=d.id %}">Edit</a></td><td class="delete" style="border: 2px black solid"><a href="{% url 'delete' id=d.id %}" onClick="return confirm('Do you want to delete')">Delete</a></td></tr>
+			{% endfor %}
+			</table>
+			{% else %}
+			<h1 style="text-align: center;margin-top:20px;">No video data</h1>
+			
+			{% endif %}
 	</div>
 
-	<div class="pagination">
+	<div class="pagination" style="margin-left: 810px;">
 	    <span class="step-links">
 	        {% if data.has_previous %}
-	            <a href="?page=1">&laquo; first</a>
-	            <a href="?page={{ data.previous_page_number }}">previous</a>
+	            <a href="?page=1" style="margin-left: 5px;">&laquo; </a>
+	            <a href="?page={{ data.previous_page_number }}" style="margin-left: 5px;">&lsaquo; </a>
 	        {% endif %}
 
 	        <span class="current">
-	            Page {{ data.number }} of {{ data.paginator.num_pages }}.
+	            {{ data.number }} of {{ data.paginator.num_pages }}
 	        </span>
 
 	        {% if data.has_next %}
-	            <a href="?page={{ data.next_page_number }}">next</a>
-	            <a href="?page={{ data.paginator.num_pages }}">last &raquo;</a>
+	            <a href="?page={{ data.next_page_number }}" style="margin-left: 5px;"> &rsaquo;</a>
+	            <a href="?page={{ data.paginator.num_pages }}" style="margin-left: 5px;"> &raquo;</a>
 	        {% endif %}
 	    </span>
 	</div>
-
+	</div>
 <script type="text/javascript">
 	$(document).ready(function(){
 

@@ -9,6 +9,8 @@
 		font-family: Arial, Helvetica, sans-serif;
 	}
 </style>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" ></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <body style="background-image: url({% static 'images/OG1FLx.jpg' %})">
 	<!-- <form method="POST" enctype="html/text" action="{% url 'login' %}" >
@@ -27,13 +29,24 @@
             		<!-- {{ usfo.email.errors }} -->
                     <div >{{usfo.email.label}}</div>
                     <div>{{usfo.email}}</div>
-                    <div>{{usfo.email.errors}}</div>
+                    <div>
+                        {% for err in usfo.email.errors%}
+                        <span style="color: red;">{{ err }}</span><br>
+                        {% endfor %}
+
+                    </div>
             </div>
             
             <div style="margin-bottom: 5px;">
                     <div >{{usfo.password.label}}</div>
                     <div>{{usfo.password}}</div>
-                    <div>{{ usfo.password.errors}}</div>
+                    <!-- <div>{{ usfo.password.errors}}</div> -->
+                    <div>
+                        {% for err in usfo.password.errors%}
+                        <span style="color: red;">{{ err }}</span><br>
+                        {% endfor %}
+
+                    </div>
             </div>
             <!-- {% if err %}
             <div style="color:red;" class="error">{{ err }}</div>
