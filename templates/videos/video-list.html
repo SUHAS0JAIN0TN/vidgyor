@@ -3,7 +3,52 @@
 <head>
 	<title>done</title>
 </head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <body>
+	<div><a href="{% url 'logout' %}">Logout</a><a href="{% url 'add_form' %}">Add Video</a></div>
+	<div>
+	<table >
+		<form method="POST" enctype="html/text" action="{{ request.path }}" >
+            {% csrf_token %}
+		{{filterForm.as_table}}
+		<input type="submit" name="submit" value="SUBMIT">
+        </form>
+		<tr><th>Title</th><th>Description</th><th>Tags</th><th>Categories</th><th>Thumbnail</th><th>Edit</th><th>Delete</th></tr>
+	
+		{% for d in data %}
+		    <tr id="{{d.id}}"><td style="border: 2px black solid">{{d.title}}</td><td style="border: 2px black solid">{{d.description}}</td><td style="border: 2px black solid">{{d.tags}}</td><td style="border: 2px black solid">{{d.categories}}</td><td style="border: 2px black solid">{{d.thumbnail}}</td><td class="edit" style="border: 2px black solid"><a href="{% url 'edit_form' id=d.id %}">Edit</a></td><td class="delete" style="border: 2px black solid"><a href="{% url 'delete' id=d.id %}" onClick="return confirm('Do you want to delete')">Delete</a></td></tr>
+		{% endfor %}
+	
+	</table>
+	</div>
 
+	<div class="pagination">
+	    <span class="step-links">
+	        {% if data.has_previous %}
+	            <a href="?page=1">&laquo; first</a>
+	            <a href="?page={{ data.previous_page_number }}">previous</a>
+	        {% endif %}
+
+	        <span class="current">
+	            Page {{ data.number }} of {{ data.paginator.num_pages }}.
+	        </span>
+
+	        {% if data.has_next %}
+	            <a href="?page={{ data.next_page_number }}">next</a>
+	            <a href="?page={{ data.paginator.num_pages }}">last &raquo;</a>
+	        {% endif %}
+	    </span>
+	</div>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+
+	  $('.edit').click(function(){
+	  	// alert($(this).parent().attr('id'));
+	  	// location.href="";
+	  });
+
+	}); 
+</script>
 </body>
 </html>

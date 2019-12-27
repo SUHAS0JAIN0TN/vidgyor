@@ -42,3 +42,4 @@ class vid(models.Model):
 	categories=models.CharField(max_length=20)
 	thumbnail=models.FileField(upload_to='thumbnails')
 	videos=models.FileField(upload_to='videos')
+	date=models.DateField(auto_now_add=True)

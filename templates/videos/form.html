@@ -4,8 +4,8 @@
 	<title>List Of all videos</title>
 </head>
 <body>
-	<div>
-		<form method="POST" action="{% url 'main_page' %}" enctype="multipart/form-data">
+	<div style="margin: 0 auto ;width: 1000px;margin-top: 30px; ">
+		<form method="POST" action="{{ request.path }}" enctype="multipart/form-data">
 			{% csrf_token %}
 			{{vform.as_table}}
 	       	<input type="submit" name="submit" value="SUBMIT">

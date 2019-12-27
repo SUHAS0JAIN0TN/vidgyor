@@ -35,9 +35,9 @@
                     <div>{{usfo.password}}</div>
                     <div>{{ usfo.password.errors}}</div>
             </div>
-            {% if err %}
+            <!-- {% if err %}
             <div style="color:red;" class="error">{{ err }}</div>
-            {% endif %}
+            {% endif %} -->
             <!-- {{ usfo.errors }} -->
             <!-- <div>{{usfo.password.label}}<br>{{usfo.password}}</div> -->
             <!-- {{for}} -->
@@ -46,9 +46,6 @@
     </div>
 
 <script type="text/javascript">
-	$('input').on('input',function(){
-		$('.error').hide();
-	});
 </script>
 </body>
 </html>
